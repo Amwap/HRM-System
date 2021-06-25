@@ -1,0 +1,137 @@
+        <div class="page">
+            <div class="page_top" ><div class="right_arrow" onclick="closePage()"></div>
+            </div>
+            
+            <div class="user_form_box">
+            {% comment %} <fieldset disabled> {% endcomment %}
+                <form class="main_form user_form" onsubmit="return sendStudentForm(this)">
+                    <input style='display:none' name="student_id" value="{{student.id}}">
+                    <p> id пользователя #{{student.id}} <p> Cтатус: Студент</p></p>
+                    <p> <p>ФИО</p>
+                        <input required name="surename" type="text" size="40" placeholder="Фамилия" value="{{student.surename}}">
+                        <input required name="name" type="text" size="40" placeholder="Имя" value="{{student.name}}">
+                        <input name="patronymic" type="text" size="40" placeholder="Отчество" value="{{student.patronymic}}">
+                    </p>
+                    <p> <p>Телефон</p>
+                        <input name="phone" type="text" size="40" value="{{student.phone}}">
+                    </p>
+                    <p> <p>Email</p>
+                        <input required name="email" type="text" size="40" value="{{student.email}}">
+                    </p>
+                    <p> <p>Город проживания</p>
+                        <input name="cityOfResidence" type="text" size="40" value="{{student.cityOfResidence}}">
+                    </p>
+                    <p> <p>Город прописки</p>
+                        <input name="cityOfRegistration" type="text" size="40" value="{{student.cityOfRegistration}}">
+                    </p>
+                    <p> <p>Дата рождения</p>
+                        <input required name="dateOfBirth" type="date" id="start" name="trip-start" value="{{student.getStrfedDate}}">
+
+                    </p>
+                    <p> <p>Гендер
+                        <select required name="gender" >
+                            {% if student  != None %}
+                                <option>{{student.gender}}</option>
+                            {% endif %}
+
+                                <option>м</option>
+                                <option>ж</option>
+                        </select></p>
+                    </p>
+                    <p>
+                        <button type="submit">Сохранить</button>
+                        {% if user_query_id != '' %}
+                            <button type="button" style="margin: 20px;" onclick="requestOnDelete('deleteStudent&student_id={{student.id}}')">Удалить студента</button>
+                        {% endif %}
+                    </p>
+                    
+                </form>
+                <form class="additional_form user_form">
+                
+                    <p> <p>Группа</p>
+                        <select required name="group">
+                            {% if student  != None %}
+                                <option value="{{student.group.id}}">{{student.group.name}}</option>
+                            {% else %}
+                                <option>Группа не выбрана</option>
+                            {% endif %}
+                            
+                            {% for group in groups %}
+                                <option value="{{group.id}}">{{group.name}}</option>
+                            {% endfor %}
+                        </select>
+                    </p>
+                    <p> <p>Родители пенсионеры</p>
+                        <select name="parentsArePensioners">
+                            {% if student  != None %}
+                                <option>{{student.parentsArePensioners}}</option>
+                            {% endif %}
+                            <option>нет</option>
+                            <option>да</option>
+                        </select>
+                    </p>
+                    <p> <p>Количество детей
+                        {% if student != None %}
+                            <input name="amountOfChildren" type="number" size="1" name="num" min="0" max="9" value="{{student.amountOfChildren}}" style="width: 50px;"></p>
+                        {%else%}
+                            <input name="amountOfChildren" type="number" size="1" name="num" min="0" max="9" value="0" style="width: 50px;"></p>
+                        {%endif%}
+                    </p>
+                    <p> <p>Отдел по делам несовершеннолетних
+                        <select name="juvenileAffairsUnit">
+                            {% if student  != None %}
+                                <option>{{student.juvenileAffairsUnit}}</option>
+                            {% endif %}
+                            <option>нет</option>
+                            <option>да</option>
+                        </select></p>
+                    </p>
+                    <p> <p>Состав семьи
+                        <select name="fullFamily">
+                            {% if student != None %}
+                                <option selected >{{student.fullFamily}}</option>
+                            {% endif %}
+                            <option>0</option>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                        </select></p>
+                    </p>
+                    <p> <p>Спортивные секции</p>
+                        <input name="sportsSections" type="text" size="40" value="{{student.sportsSections}}">
+                    </p>
+                    <p> <p>Интересы</p>
+                        <textarea name="interests" rows="2" cols="40">{{student.interests}}</textarea>
+                    </p>
+                    <p> <p>Примечание</p>
+                        <textarea name="note" rows="2" cols="40">{{student.note}}</textarea>
+                    </p>
+                </form>
+            {% comment %} </fieldset> {% endcomment %}
+            </div>
+            {% if user_query_id != '' %}
+                <p style="margin: 0px; ">Родители <button type="button" style="margin: 20px;" onclick="openPage('emptyParentPage{{user_query_id}}')">Добавить</button></p>
+                <table class="parent_table">
+                    <thead>
+                        <tr>
+                            <th colspan="1">ФИО</th>
+                            <th colspan="2">Кем приходится</th>
+                            <th colspan="3">Телефон</th>
+                            <th colspan="4">Email</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for parent in parents %}
+                            {% comment %} <th colspan="{{name.index}}">{{name.name}}</th> {% endcomment %}
+                            <tr>
+                                <td colspan="1" onclick="open_page('parent-{{parent.id}}')">{{parent.getFIO}}</td>
+                                <td colspan="2" onclick="open_page('parent-{{parent.id}}')">{{parent.who}}</td>
+                                <td colspan="3" onclick="open_page('parent-{{parent.id}}')">{{parent.phone}}</td>
+                                <td colspan="4" onclick="open_page('parent-{{parent.id}}')">{{parent.email}}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% endif %}
+            
+        </div>

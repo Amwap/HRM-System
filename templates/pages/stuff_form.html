@@ -1,0 +1,59 @@
+<div class="page">
+    <div class="page_top" ><div class="right_arrow" onclick="closePage()"></div>
+        
+    </div>
+    <form class="teacher_form user_form" id="teacher_form" onsubmit="return sendStuffForm(this)">
+        <input style='display:none' name="id" value="{{tutor.id}}">
+        <p> id пользователя #{{tutor.id}} <p> Cтатус: Руководитель</p></p>
+        <p> <p>ФИО</p>
+            <input required name="surename" type="text" size="40" placeholder="Фамилия" value="{{tutor.surename}}">
+            <input required name="name" type="text" size="40" placeholder="Имя" value="{{tutor.name}}">
+            <input  name="patronymic" type="text" size="40" placeholder="Отчество" value="{{tutor.patronymic}}">
+        </p>
+        <p> <p>Телефон</p>
+            <input name="phone" type="text" size="40" value="{{tutor.phone}}">
+        </p>
+        <p> <p>Email</p>
+            <input required name="email" type="text" size="40" value="{{tutor.email}}">
+        </p>
+        <p> <p>Примечание</p>
+            <textarea name="note" rows="2" cols="40">{{tutor.note}}</textarea>
+        </p>
+        <p> <p>Администратор</p>
+            <select name="admin">
+                {% if tutor.admin  == 'да' %}
+                    <option>да</option>
+                    <option>нет</option>
+                {% else %}
+                    <option>нет</option>
+                    <option>да</option>
+                {% endif %}
+            </select>
+        </p>
+        <p> <p>Специалист УО</p>
+            <select name="specialist">
+                {% if tutor.specialist  == 'да' %}
+                    <option>да</option>
+                    <option>нет</option>
+                {% else %}
+                    <option>нет</option>
+                    <option>да</option>
+                {% endif %}
+            </select>
+        </p>
+        <p> <p>Логин</p>
+            <input required name="login" type="text" size="40" value="{{tutor.login}}">
+        </p>
+        <p> <p>Пароль</p>
+            <input required name="password" type="text" size="40" value="{{tutor.password}}">
+        </p>
+        <button type="submit" id="stuff_submit">Сохранить</button> 
+        {% if tutor.id != None%}
+            <button type="button" style="margin: 20px;" onclick="requestOnDelete('deleteTutor&tutor_id={{tutor.id}}')">Удалить руководителя</button>
+        {% endif %}
+    </form>
+    <script>
+        
+    </script>
+</div>
+</div>

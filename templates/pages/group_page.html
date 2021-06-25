@@ -1,0 +1,54 @@
+<div class="page">
+    <div class="page_top" ><div class="right_arrow" onclick="closePage()"></div>
+        
+    </div>
+    <form class="teacher_form user_form" id="teacher_form" onsubmit="return sendGroupForm(this)">
+        <input style='display:none' name="id" value="{{group.id}}" type="text" size="40">
+        <p>id группы: #{{group.id}} <button type="button" style="margin-left: 20px;" onclick="open_page('groupStats-{{group.id}}')">Статистика группы</button></p>
+        <p> <p>Название группы</p>
+            <input name="name" type="text" size="40" value="{{group.name}}">
+        </p>
+        <p> <p>Год формирования</p>
+            <input  name="year" type="text" size="40" value="{{group.year}}">
+        </p>
+        <p> <p>Руководитель</p>
+            <select name="leader">
+                {%if group.leader != None %} 
+                    <option value="{{group.leader.id}}">{{group.leader.getFIO}}</option>
+                    
+                {% else %}
+                    <option value="-1">Преподаватель не выбран</option>
+                {% endif %}
+
+                {% for tutor in tutors%}
+                    <option value="{{tutor.id}}">{{tutor.getFIO}}</option>
+                {% endfor %}
+            </select>
+            </p>
+        </p>
+            <button type="submit" id="stuff_submit">Сохранить</button> 
+            {% if not empty %}
+                <button type="button" style="margin: 20px;" onclick="requestOnDelete('deleteGroup&group_id={{group.id}}')">Расформировать группу</button>
+            {% endif %}
+    </form>
+    <table class="main_table" cols='5'>
+    <thead>
+        <tr>
+            {% for name in headers %}
+                <th colspan="{{name.index}}">{{name.name}}</th>
+            {% endfor %}
+        </tr>
+    </thead>
+    <tbody>
+        {% for student in students %}
+            {% comment %} <th colspan="{{name.index}}">{{name.name}}</th> {% endcomment %}
+            <tr>
+                <td colspan="1" onclick="open_page('student-{{student.id}}')">{{student.getFIO}}</td>
+                <td colspan="2" onclick="open_page('student-{{student.id}}')">{{student.email}}</td>
+                <td colspan="3" onclick="open_page('student-{{student.id}}')">{{student.phone}}</td>
+                <td colspan="4" onclick="open_page('group-{{student.group.id}}')">{{student.group.name}}</td>
+            </tr>
+        {% endfor %}
+    
+</div>
+</div>

@@ -1,0 +1,37 @@
+<div class="page">
+    <div class="page_top" ><div class="right_arrow" onclick="closePage()"></div>
+        
+    </div>
+    <form class="teacher_form user_form" id="teacher_form" onsubmit="return sendParentForm(this)">
+        <input style='display:none' name="student_id" value="{{student.id}}">
+        <input style='display:none' name="parent_id" value="{{parent.id}}">
+
+        <p>{{student.getFIO}}<p> Cтатус: Родитель</p></p>
+        <p> <p name="student_id" value="{{student.id}}">ФИО</p>
+            <input required name="surename" type="text" size="40" placeholder="Фамилия" value="{{parent.surename}}">
+            <input required name="name" type="text" size="40" placeholder="Имя" value="{{parent.name}}">
+            <input  name="patronymic" type="text" size="40" placeholder="Отчество" value="{{parent.patronymic}}">
+        </p>
+        <p> <p>Телефон</p>
+            <input name="phone" type="text" size="40" value="{{parent.phone}}">
+        </p>
+        <p> <p>Email</p>
+            <input required name="email" type="text" size="40" value="{{parent.email}}">
+        </p>
+        <p> <p>Кем приходится</p>
+            <input required name="who" type="text" size="40" value="{{parent.who}}">
+        </p>
+        <p> <p>Примечание</p>
+            <textarea name="note" rows="2" cols="40">{{parent.note}}</textarea>
+        </p>
+
+        <button type="submit" id="stuff_submit">Сохранить</button> 
+        {% if parent != None%}
+            <button type="button" style="margin: 20px;" onclick="requestOnDelete('deleteParent&parent_id={{parent.id}}')">Удалить родителя</button>
+        {% endif %}
+    </form>
+    <script>
+        
+    </script>
+</div>
+</div>

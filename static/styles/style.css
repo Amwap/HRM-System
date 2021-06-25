@@ -1,0 +1,130 @@
+body{
+    display: flex;
+    margin: 0px;
+    height: 100%;
+    width: 200vh;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+main{
+    background-color: rgb(255, 113, 236);
+    height: 100%;
+    width: 100%;
+}
+
+form p{
+    margin: 0px;
+}
+
+textarea{ margin: 0; }
+
+
+
+.left_part{
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    justify-content: center;
+    height: 100%;
+    width: 700px;
+    margin-left: 5%;
+}
+
+.feature_box{
+    display: flex;
+    height: 150px;
+    width: 100%;
+    margin-bottom: 25px;
+    
+}
+
+.table_box{
+    position: relative;
+    bottom: 10px;
+    height: 70%;
+    width: 100%;
+    max-height: 100%;
+    overflow-y: auto;
+}
+
+
+.right_part{
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 0px;
+    right: 0px;
+    height: 100%;
+    width: 700px;
+}
+
+.page{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    background-color: #e0e0e0;
+    overflow: auto;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+
+.page_top{
+    height: 50px;
+    width: 90%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+}
+
+.user_form{
+    width: 90%;
+    padding: 10px;
+}
+
+.user_form p{
+    margin-top: 10px;
+    font-weight: bold;
+} 
+
+.user_form input{width: 100%} 
+.user_form textarea{width: 100%} 
+.page > table{width: 90%;}
+/* .feature_box > p{
+    width: 50%;
+    margin: 10px;
+} */
+
+
+.user_form_box{
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    width: 90%;
+
+}
+
+
+.right_arrow{
+    height: 50px;
+    width: 50px;
+    background-image: url("../img/arrow.png");
+    background-size: cover;
+
+}
+
+.teacher_form.user_form{width: 70%;}
+
+.page_header{
+    margin-left: 50px; 
+    
+}
+
+.features{
+    height: 97%;
+    /* width: 97%; */
+    position: relative;
+}
+

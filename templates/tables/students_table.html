@@ -1,0 +1,22 @@
+
+
+<table class="main_table" cols='5'>
+    <thead>
+        <tr>
+            {% for name in headers %}
+                <th colspan="{{name.index}}">{{name.name}}</th>
+            {% endfor %}
+        </tr>
+    </thead>
+    <tbody>
+        {% for student in students %}
+            {% comment %} <th colspan="{{name.index}}">{{name.name}}</th> {% endcomment %}
+            <tr>
+                <td colspan="1" onclick="open_page('student-{{student.id}}')">{{student.getFIO}}</td>
+                <td colspan="2" onclick="open_page('student-{{student.id}}')">{{student.email}}</td>
+                <td colspan="3" onclick="open_page('student-{{student.id}}')">{{student.phone}}</td>
+                <td colspan="4" onclick="open_page('group-{{student.group.id}}')">{{student.group.name}}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>

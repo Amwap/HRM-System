@@ -1,0 +1,21 @@
+
+
+<table class="main_table">
+    <thead>
+        <tr>
+            {% for name in headers %}
+                <th colspan="{{name.index}}">{{name.name}}</th>
+            {% endfor %}
+        </tr>
+    </thead>
+    <tbody>
+        {% for group in groups %}
+            {% comment %} <th colspan="{{name.index}}">{{name.name}}</th> {% endcomment %}
+            <tr>
+                <td onclick="open_page('leader-{{group.leader.id}}')">{{group.leader.getFIO}}</td>
+                <td onclick="open_page('group-{{group.id}}')">{{group.name}}</td>
+            </tr>
+        {% endfor %}
+        
+    </tbody>
+</table>

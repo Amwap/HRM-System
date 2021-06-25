@@ -1,0 +1,21 @@
+<div class="page">
+    <div class="page_top" ><div class="right_arrow" onclick="closePage()"></div></div>
+        <p style="margin: 0px; ">{{head}}</p>
+        <table class="parent_table">
+            <thead>
+                <tr>
+                    <th colspan="1">Аналитический запрос</th>
+                    <th colspan="2">Количество</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for i in data%}
+                    <tr>
+                        <td colspan="1" >{{ i.0 }}</td>
+                        <td style="text-align: center;" colspan="2" >{{ i.1 }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    
+</div>

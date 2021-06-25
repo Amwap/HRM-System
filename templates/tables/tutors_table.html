@@ -1,0 +1,24 @@
+
+
+<table class="main_table" cols='5'>
+    <thead>
+        <tr>
+            {% for name in headers %}
+                <th colspan="{{name.index}}">{{name.name}}</th>
+            {% endfor %}
+        </tr>
+    </thead>
+    <tbody>
+        {% for tutor in tutors %}
+            {% comment %} <th colspan="{{name.index}}">{{name.name}}</th> {% endcomment %}
+            <tr>
+                <td colspan="1" onclick="open_page('leader-{{tutor.id}}')">{{tutor.getFIO}}</td>
+                <td colspan="2" onclick="open_page('leader-{{tutor.id}}')">{{tutor.admin}}</td>
+                <td colspan="3" onclick="open_page('leader-{{tutor.id}}')">{{tutor.specialist}}</td>
+                <td colspan="4" onclick="open_page('leader-{{tutor.id}}')">{{tutor.email}}</td>
+                <td colspan="5" onclick="open_page('leader-{{tutor.id}}')">{{tutor.phone}}</td>
+            </tr>
+        {% endfor %}
+        
+    </tbody>
+</table>

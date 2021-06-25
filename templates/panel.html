@@ -1,0 +1,43 @@
+<div class="features">
+    <p>Вы авторизованы как
+    {% if 'admin' in permissions %} Администратор. {% endif %}
+    {% if 'spec' in permissions %} Специалист УО. {% endif %}
+    {% if 'tutor' in permissions %} Руководитель группы. {% endif %}
+    <button onclick="exit()">Выйти</button>
+    </p> <p></p>
+    <p>
+        {% if 'admin' in permissions %}
+            <button type="button" onclick="openPage('emptyStuffPage')">Создать руководителя</button>
+            <button type="button" onclick="openPage('emptyStudentPage')">Создать студента</button>
+            <button type="button" onclick="openPage('emptyGroupPage')">Создать группу</button>
+            <button type="button" onclick="open_page('groupStats-all')">Общая статистика</button>
+        {% endif %}
+        {% if 'spec' in permissions%}
+            <button type="button" onclick="open_page('groupStats-all')">Общая статистика</button>
+        {% endif %}
+        {% if 'tutor' in permissions%}
+            <button type="button" onclick="openPage('emptyStudentPage')">Создать студента</button>
+        {% endif %}
+        
+
+        {% comment %} <button type="button">Статистика</button> {% endcomment %}
+    </p>
+    <p> 
+        <form action="" onsubmit="return search(this)">
+            <p><input name="searchField" type="text" size="40" placeholder="Введите запрос"> 
+            <button type="submit">Поиск</button></p>
+        </form>
+        
+    </p>
+    <p>
+        <button type="button" onclick="setMainTable('groupsTable')">Группы</button>
+        {% if 'admin' in permissions %}
+            <button type="button" onclick="setMainTable('tutorsTable')">Весь персонал</button>
+        {% endif %}
+        <button type="button" onclick="setMainTable('studentsTable')" style="margin-right: 10px;">Студенты</button>
+        Сортировка:
+        <button onclick="get_sorted('sort_by_alphabet')">По алфавиту</button>
+        <button onclick="get_sorted('sort_by_group')">По группам</button>
+    </p>
+
+</div>
